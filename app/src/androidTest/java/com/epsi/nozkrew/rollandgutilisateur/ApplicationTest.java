@@ -1,4 +1,4 @@
-package com.epsi.nozkrew.appuser;
+package com.epsi.nozkrew.rollandgutilisateur;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
