@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+        <!-- Row 3 with 2 columns -->
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/joueur1" android:text="j1"
+                android:layout_weight="1"  android:background="#a09f9f"
+            android:textColor="#000000"
+            android:padding="15dip" android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/vs" android:text="VS"
+                android:layout_weight="1"  android:background="#b0b0b0"
+                android:textColor="#000000"
+                android:padding="15dip" android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/joueur2" android:text="j2"
+                android:layout_weight="1" android:background="#a09f9f"
+                android:textColor="#000000"
+                android:padding="15dip" android:gravity="center"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

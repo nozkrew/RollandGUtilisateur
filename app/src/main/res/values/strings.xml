@@ -6,4 +6,37 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_match_current">matchCurrent</string>
 
+    <!-- URL du serveur pour les données -->
+    <string name="uri">http://danaru.olympe.in</string>
+
+    <!-- BDD -->
+        <!-- Nom de la BDD -->
+    <string name="bdd_name">rollandGarros</string>
+
+        <!-- nom des tables -->
+    <string name="table_match">match</string>
+    <string name="table_score">score</string>
+
+        <!-- Colonnes communes -->
+    <string name="col_id">id</string>
+
+        <!-- Table MATCH - nom des colonnes -->
+    <string name="match_nom_joueur_1">nom_joueur_1</string>
+    <string name="match_prenom_joueur_1">prenom_joueur_1</string>
+    <string name="match_id_joueur_1">id_joueur_1</string>
+    <string name="match_nom_joueur_2">nom_joueur_2</string>
+    <string name="match_prenom_joueur_2">prenom_joueur_2</string>
+    <string name="match_id_joueur_2">id_joueur_2</string>
+    <string name="match_nom_terrain">nom_terrain</string>
+    <string name="match_termine">termine</string>
+    <string name="match_maj">maj_match</string>
+
+    //SCORE Table - nom des colonnes
+    <string name="score_point">point_score</string>
+    <string name="score_jeu">jeu_score</string>
+    <string name="score_set">set_score</string>
+    <string name="score_maj">maj_score</string>
+    <string name="score_id_match">id_match</string>
+    <string name="score_id_joueur">id_joueur</string>
+
 </resources>
