@@ -23,18 +23,24 @@ public class matchCurrent extends ActionBarActivity {
         Intent intent = getIntent();
         //Info match
         int id_match = intent.getIntExtra("match_id", 0);
+
         //Info j1
         String nom_j1 = intent.getStringExtra("nom_j1");
         int id_j1 = intent.getIntExtra("id_j1", 0);
+
         //Info j2
         String nom_j2 = intent.getStringExtra("nom_j2");
         int id_j2 = intent.getIntExtra("id_j2", 0);
 
-        Log.i("RGUser", "Debut BDD");
         ScoreBDD scoreBDD = new ScoreBDD(this);
-
-        Log.i("RGUser", "Recup score");
+        scoreBDD.open();
         ArrayList<Score> scores = scoreBDD.getScoreMatch(id_match);
+        if(scores != null){
+            
+        }
+        else{
+            //Erreur score
+        }
     }
 
 

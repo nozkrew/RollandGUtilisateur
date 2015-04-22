@@ -47,25 +47,31 @@ public class ScoreBDD {
     }
 
     public ArrayList<Score> getScoreMatch(int p_idMatch){
+
         ArrayList<Score> scores = new ArrayList<Score>();
-        String query = "SELECT * FROM " + TABLE_SCORE + " WHERE " + SCORE_ID_MATCH +" = " + p_idMatch ;
-        Cursor cursor = bdd.rawQuery(query, null);
-        while(cursor.moveToNext()){
+        String query = "SELECT * FROM " + TABLE_SCORE + " WHERE " + SCORE_ID_MATCH +" = ? ;" ;
+        Cursor cursor = bdd.rawQuery(query, new String[] {String.valueOf(p_idMatch)});
+        if(cursor != null) {
+            Log.i("RGUser", "If Cursor");
+            while (cursor.moveToNext()) {
+                Score score = new Score();
+                //Gestion de la date
+                //TODO
 
-            Score score = new Score();
-            //Gestion de la date
-            //TODO
-
-            //Set
-            score.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-            score.setPoint(cursor.getString(cursor.getColumnIndex(SCORE_POINT)));
-            score.setJeu(cursor.getInt(cursor.getColumnIndex(SCORE_JEU)));
-            score.setSet(cursor.getInt(cursor.getColumnIndex(SCORE_SET)));
-            score.setId_match(cursor.getInt(cursor.getColumnIndex(SCORE_ID_MATCH)));
-            score.setId_joueur(cursor.getInt(cursor.getColumnIndex(SCORE_ID_JOUEUR)));
-            scores.add(score);
+                //Set
+                score.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+                score.setPoint(cursor.getString(cursor.getColumnIndex(SCORE_POINT)));
+                score.setJeu(cursor.getInt(cursor.getColumnIndex(SCORE_JEU)));
+                score.setSet(cursor.getInt(cursor.getColumnIndex(SCORE_SET)));
+                score.setId_match(cursor.getInt(cursor.getColumnIndex(SCORE_ID_MATCH)));
+                score.setId_joueur(cursor.getInt(cursor.getColumnIndex(SCORE_ID_JOUEUR)));
+                scores.add(score);
+            }
+            return scores;
         }
-        return scores;
+        else{
+            return null;
+        }
     }
 
     public long addScore(Score p_score){

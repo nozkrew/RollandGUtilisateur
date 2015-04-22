@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.epsi.nozkrew.rollandgutilisateur.R;
 
@@ -79,6 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+        Log.i("RGUser", "Update database");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MATCH);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
         onCreate(db);

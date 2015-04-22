@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.epsi.nozkrew.rollandgutilisateur.pck_classes.DatabaseHelper;
 import com.epsi.nozkrew.rollandgutilisateur.pck_classes.Match;
 import com.epsi.nozkrew.rollandgutilisateur.pck_classes.MatchAdapter;
 import com.epsi.nozkrew.rollandgutilisateur.pck_classes.MatchBDD;
@@ -57,12 +58,6 @@ public class HomeUser extends ActionBarActivity {
 
         //matchBDD.AddMatch(unMatch);
         ArrayList<Match> listMatchs = matchBDD.getMatchEnCours();
-
-        /*
-        for(Match match : listMatchs){
-            Log.i("RGUser" , "Id match : " + match.getId());
-        }
-        */
 
         //Recupère la liste view
         final ListView listViewMatch = (ListView) findViewById(R.id.listViewMatch);
