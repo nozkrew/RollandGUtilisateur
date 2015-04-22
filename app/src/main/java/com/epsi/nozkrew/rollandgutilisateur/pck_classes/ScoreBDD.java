@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by Nozkrew on 25/03/2015.
@@ -43,12 +46,13 @@ public class ScoreBDD {
         return bdd;
     }
 
-    public Score getScoreJoueur(int p_idJoueur, int p_idMatch){
-        String query = "SELECT * FROM " + TABLE_SCORE + " WHERE " + SCORE_ID_JOUEUR + " = " + p_idJoueur + " AND " + SCORE_ID_MATCH +" = " + p_idMatch ;
+    public ArrayList<Score> getScoreMatch(int p_idMatch){
+        ArrayList<Score> scores = new ArrayList<Score>();
+        String query = "SELECT * FROM " + TABLE_SCORE + " WHERE " + SCORE_ID_MATCH +" = " + p_idMatch ;
         Cursor cursor = bdd.rawQuery(query, null);
-        Score score = new Score();
-        if(cursor.moveToFirst()){
+        while(cursor.moveToNext()){
 
+            Score score = new Score();
             //Gestion de la date
             //TODO
 
@@ -59,8 +63,9 @@ public class ScoreBDD {
             score.setSet(cursor.getInt(cursor.getColumnIndex(SCORE_SET)));
             score.setId_match(cursor.getInt(cursor.getColumnIndex(SCORE_ID_MATCH)));
             score.setId_joueur(cursor.getInt(cursor.getColumnIndex(SCORE_ID_JOUEUR)));
+            scores.add(score);
         }
-        return score;
+        return scores;
     }
 
     public long addScore(Score p_score){

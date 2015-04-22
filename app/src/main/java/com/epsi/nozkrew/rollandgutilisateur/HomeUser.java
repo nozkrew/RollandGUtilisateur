@@ -1,6 +1,7 @@
 package com.epsi.nozkrew.rollandgutilisateur;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -45,33 +48,43 @@ public class HomeUser extends ActionBarActivity {
         setContentView(R.layout.activity_home_user);
 
         MatchBDD matchBDD = new MatchBDD(this);
-        ScoreBDD scoreBDD = new ScoreBDD(this);
 
-        Match unMatch = new Match(1, "Nadal", "Raphael", 5, "Monfils", "Gael", 9, "Oui", false, new Date());
-
-        Score unScore = new Score(1, "15", 1, 1, new Date(), 1, 1 );
+        Match unMatch = new Match(0, "Nadal", "Raphael", 5, "Monfils", "Gael", 9, "Oui", false, new Date());
 
         matchBDD.open();
-        scoreBDD.open();
 
-        //scoreBDD.addScore(unScore);
-
-        Score scoreGet = scoreBDD.getScoreJoueur(1, 1);
-        Log.i("Score :", scoreGet.getPoint());
         Log.i("Lancement", "Init");
 
         //matchBDD.AddMatch(unMatch);
         ArrayList<Match> listMatchs = matchBDD.getMatchEnCours();
 
-    /*
+        /*
         for(Match match : listMatchs){
-            Log.i("match", match.getNom_joueur_1() + " " + match.getNom_joueur_2());
+            Log.i("RGUser" , "Id match : " + match.getId());
         }
-    */
-        //Recupère la liste view
-        ListView listViewMatch = (ListView) findViewById(R.id.listViewMatch);
+        */
 
+        //Recupère la liste view
+        final ListView listViewMatch = (ListView) findViewById(R.id.listViewMatch);
+
+        //On ajoute les match a l'adapter
         MatchAdapter adapter = new MatchAdapter(this, listMatchs);
         listViewMatch.setAdapter(adapter);
+
+        listViewMatch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View child, int position, long id) {
+                Match match = (Match) listViewMatch.getItemAtPosition(position);
+                Log.i("RGUser", "Match choisit " + match.getId());
+                Intent intent = new Intent(HomeUser.this, matchCurrent.class);
+                intent.putExtra("match_id", match.getId());
+                intent.putExtra("nom_j1", match.getNom_joueur_1());
+                intent.putExtra("id_j1", match.getId_joueur_1());
+                intent.putExtra("nom_j2", match.getNom_joueur_2());
+                intent.putExtra("id_j2", match.getId_joueur_2());
+
+                startActivity(intent);
+            }
+        });
     }
 }
