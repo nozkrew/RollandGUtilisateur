@@ -89,4 +89,20 @@ public class ScoreBDD {
 
         return bdd.insert(TABLE_SCORE, null, values);
     }
+
+    public void updateScore(Score p_score){
+        String date_maj = p_score.getMaj_score().toString();
+
+        ContentValues values = new ContentValues();
+
+        values.put(SCORE_POINT, p_score.getPoint());
+        values.put(SCORE_JEU, p_score.getJeu());
+        values.put(SCORE_SET, p_score.getSet());
+        values.put(SCORE_MAJ, date_maj);
+        values.put(SCORE_ID_MATCH, p_score.getId_match());
+        values.put(SCORE_ID_JOUEUR, p_score.getId_joueur());
+
+        String[] args = new String[]{(Integer.toString(p_score.getId())) };
+        bdd.update(TABLE_SCORE, values, COL_ID+"= ?", args);
+    }
 }

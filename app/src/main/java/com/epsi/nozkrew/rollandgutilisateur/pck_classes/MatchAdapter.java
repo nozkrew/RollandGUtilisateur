@@ -30,9 +30,17 @@ public class MatchAdapter extends ArrayAdapter<Match> {
         // Lookup view for data population
         TextView j1 = (TextView) convertView.findViewById(R.id.joueur1);
         TextView j2 = (TextView) convertView.findViewById(R.id.joueur2);
+        TextView statut = (TextView) convertView.findViewById(R.id.textViewStatuts);
         // Populate the data into the template view using the data object
         j1.setText(match.getNom_joueur_1());
         j2.setText(match.getNom_joueur_2());
+        if(match.isTermine()){
+            statut.setText(R.string.statutTermine);
+        }
+        else{
+            statut.setText(R.string.statutEnCours);
+        }
+
         // Return the completed view to render on screen
         return convertView;
     }

@@ -39,6 +39,10 @@
     <string name="score_id_match">id_match</string>
     <string name="score_id_joueur">id_joueur</string>
 
+    <!-- Statut des matchs -->
+    <string name="statutEnCours">En cours</string>
+    <string name="statutTermine">Terminé</string>
+
     <!-- Design -->
 
 </resources>

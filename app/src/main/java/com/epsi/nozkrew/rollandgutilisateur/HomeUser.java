@@ -50,7 +50,8 @@ public class HomeUser extends ActionBarActivity {
 
         MatchBDD matchBDD = new MatchBDD(this);
 
-        Match unMatch = new Match(0, "Nadal", "Raphael", 5, "Monfils", "Gael", 9, "Oui", false, new Date());
+        //Match unMatch = new Match(1, "DJOKOVIC", "Novak", 5, "FEDERER", "Roger", 9, "Oui", true, new Date());
+        //Match unMatch2 = new Match(2, "BERDYCH", "Tomas", 5, "MURRAY", "Andy", 9, "Oui", true, new Date());
 
         matchBDD.open();
 

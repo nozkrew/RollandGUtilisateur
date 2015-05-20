@@ -114,4 +114,29 @@ public class MatchBDD {
         return matchArrayList;
     }
 
+    public void updateMatch(Match p_match){
+        int termine;
+        String date_maj = p_match.getMaj_match().toString();
+        if (p_match.isTermine()){
+            termine = 1;
+        }
+        else{
+            termine = 0;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(MATCH_ID_JOUEUR_1, p_match.getId_joueur_1());
+        values.put(MATCH_NOM_JOUEUR_1, p_match.getNom_joueur_1());
+        values.put(MATCH_PRENOM_JOUEUR_1, p_match.getPrenom_joueur_1());
+        values.put(MATCH_ID_JOUEUR_2, p_match.getId_joueur_2());
+        values.put(MATCH_NOM_JOUEUR_2, p_match.getNom_joueur_2());
+        values.put(MATCH_PRENOM_JOUEUR_2, p_match.getPrenom_joueur_2());
+        values.put(MATCH_NOM_TERRAIN, p_match.getNom_terrain());
+        values.put(MATCH_TERMINE, termine);
+        values.put(MATCH_MAJ, date_maj);
+
+        String[] args = new String[]{(Integer.toString(p_match.getId())) };
+        bdd.update(TABLE_MATCH, values, COL_ID + " = ?", args);
+    }
+
 }

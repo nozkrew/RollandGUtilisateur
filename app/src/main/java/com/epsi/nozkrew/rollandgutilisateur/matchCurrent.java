@@ -11,6 +11,7 @@ import com.epsi.nozkrew.rollandgutilisateur.pck_classes.Score;
 import com.epsi.nozkrew.rollandgutilisateur.pck_classes.ScoreBDD;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class matchCurrent extends ActionBarActivity {
@@ -34,9 +35,10 @@ public class matchCurrent extends ActionBarActivity {
 
         ScoreBDD scoreBDD = new ScoreBDD(this);
         scoreBDD.open();
+        scoreBDD.updateScore(new Score(1, "1", 1, 1, new Date(), 1, 5));
         ArrayList<Score> scores = scoreBDD.getScoreMatch(id_match);
         if(scores != null){
-            
+
         }
         else{
             //Erreur score
