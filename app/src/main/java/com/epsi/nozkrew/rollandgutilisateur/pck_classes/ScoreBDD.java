@@ -105,4 +105,26 @@ public class ScoreBDD {
         String[] args = new String[]{(Integer.toString(p_score.getId())) };
         bdd.update(TABLE_SCORE, values, COL_ID+"= ?", args);
     }
+
+    public Score getMaxScore(int p_joueurId, int p_match){
+        String query = "SELECT MAX(*) FROM " + TABLE_SCORE + " WHERE " + SCORE_ID_MATCH +" = ? AND "+SCORE_ID_JOUEUR+" = ? ;" ;
+        Cursor cursor = bdd.rawQuery(query, new String[] {Integer.toString(p_match), Integer.toString(p_joueurId)});
+        if(cursor != null) {
+            while (cursor.moveToFirst()) {
+                Score score = new Score();
+                //Gestion de la date
+                //TODO
+
+                //Set
+                score.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+                score.setPoint(cursor.getString(cursor.getColumnIndex(SCORE_POINT)));
+                score.setJeu(cursor.getInt(cursor.getColumnIndex(SCORE_JEU)));
+                score.setSet(cursor.getInt(cursor.getColumnIndex(SCORE_SET)));
+                score.setId_match(cursor.getInt(cursor.getColumnIndex(SCORE_ID_MATCH)));
+                score.setId_joueur(cursor.getInt(cursor.getColumnIndex(SCORE_ID_JOUEUR)));
+                return score;
+            }
+        }
+        return null;
+    }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.epsi.nozkrew.rollandgutilisateur.pck_classes.Score;
 import com.epsi.nozkrew.rollandgutilisateur.pck_classes.ScoreBDD;
@@ -35,14 +36,21 @@ public class matchCurrent extends ActionBarActivity {
 
         ScoreBDD scoreBDD = new ScoreBDD(this);
         scoreBDD.open();
-        scoreBDD.updateScore(new Score(1, "1", 1, 1, new Date(), 1, 5));
-        ArrayList<Score> scores = scoreBDD.getScoreMatch(id_match);
-        if(scores != null){
 
-        }
-        else{
-            //Erreur score
-        }
+        Score scoreMaxJ1 = scoreBDD.getMaxScore(id_j1, id_match);
+        Score scoreMaxJ2 = scoreBDD.getMaxScore(id_j2, id_match);
+
+        //Récupère les textView
+        TextView tvNomJ1 = (TextView) findViewById(R.id.nomJ1);
+        TextView tvNomJ2 = (TextView) findViewById(R.id.nomJ2);
+        TextView tvPointsJ1 = (TextView) findViewById(R.id.pointsJ1);
+        TextView tvPointsJ2 = (TextView) findViewById(R.id.pointsJ2);
+
+        //Affecte les textview
+        tvNomJ1.setText(nom_j1);
+        tvNomJ2.setText(nom_j2);
+        tvPointsJ1.setText(scoreMaxJ1.getPoint());
+        tvPointsJ2.setText(scoreMaxJ2.getPoint());
     }
 
 
