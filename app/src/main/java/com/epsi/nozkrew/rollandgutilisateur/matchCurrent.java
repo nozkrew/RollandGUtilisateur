@@ -34,6 +34,8 @@ public class matchCurrent extends ActionBarActivity {
         String nom_j2 = intent.getStringExtra("nom_j2");
         int id_j2 = intent.getIntExtra("id_j2", 0);
 
+        Log.i("RGUser", "matchCurrent");
+
         ScoreBDD scoreBDD = new ScoreBDD(this);
         scoreBDD.open();
 
